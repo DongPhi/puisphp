@@ -17,6 +17,7 @@ if(!empty($_POST)) {
 		$created_at = date('Y-m-d H:i:s');
 
 		$_SESSION['user'] = $userExist;
+		$_SESSION['fullname'] = $fullname;
 
 		$userId = $userExist['id'];
 		$sql = "insert into Tokens (user_id, token, created_at) values ('$userId', '$token', '$created_at')";

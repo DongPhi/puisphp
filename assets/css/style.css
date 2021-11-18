@@ -6851,14 +6851,11 @@ pre[class*=language-]:after, pre[class*=language-]:before {
 ==========================  **/
 .custom-select,
 .form-control {
-  background: #f4f7fa;
-  padding: 10px 20px;
+
+  padding: 10px 10px;
   font-size: 14px;
 }
-.custom-select:focus,
-.form-control:focus {
-  background: #f4f7fa;
-}
+
 .custom-select::-moz-placeholder,
 .form-control::-moz-placeholder {
   color: #aaaeb3;
@@ -10823,8 +10820,8 @@ table.table .avatar {
   font-weight: normal;
 }
 .img-product label img{
-  width: 100px;
-  height: 80px;
+  width: 130px;
+  height: 100px;
   border: 1px dashed gray;
 }
 .img-product input{
@@ -10833,4 +10830,17 @@ table.table .avatar {
 }
 .product-container{
   padding: 0 10%;
+}
+.form-group select{
+  color: #111;
+  border: 1px solid #ced4da ;
+}
+.table-customer {
+  margin-bottom: 20px;
+}
+.form-customer {
+  border-bottom: 1px solid #eee;
+  padding-top: 15px;
+  margin: 0 1px;
+  padding-left: 10px;
 }

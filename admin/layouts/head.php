@@ -30,7 +30,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <!-- Favicon icon -->
-    <link rel="icon" href="<?=$baseUrl?>../assets/images/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="<?=$baseUrl?>../assets/images/favico.ico" type="image/x-icon">
     <!-- fontawesome icon -->
     <link rel="stylesheet" href="<?=$baseUrl?>../assets/fonts/fontawesome/css/fontawesome-all.min.css">
     <!-- animation css -->

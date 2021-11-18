@@ -26,7 +26,7 @@ function deleteCategory() {
 	// var_dump($data);
 	$total = $data['total'];
 	if($total > 0) {
-		echo 'Danh mục đang chứa sản phẩm, không được xoá!!!';
+		$msg = 'Danh mục đang chứa sản phẩm, không được xoá!!!';
 		die();
 	}
 

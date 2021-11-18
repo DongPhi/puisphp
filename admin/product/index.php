@@ -55,7 +55,7 @@
                                         <td>'.$item['category_name'].'</td>
                                         <td>'.$item['title'].'</td>
                                         <td>'.number_format($item['price']).' đ</td>
-                                        <td><img src="'.$item['thumbnail'].'" style="height: 100px" /></td>
+                                        <td><img src="'.fixUrl($item['thumbnail']).'" style="height: 100px" /></td>
                                                 
                                         <td width="5%">
                                             <a href="editor.php?id='.$item['id'].'" class="edit"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>

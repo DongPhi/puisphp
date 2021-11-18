@@ -91,16 +91,15 @@
                             <div class="pro-head">
                                 <img src="<?=$baseUrl?>../assets/images/user/avatar-1.jpg" class="img-radius" alt="User-Profile-Image">
 
-                                <span>Admin</span>
+                                <span><?=$user['fullname']?></span>
                                 <a href="<?=$baseUrl?>authen/logout.php" class="dud-logout" title="Logout">
                                     <i class="feather icon-log-out"></i>
                                 </a>
                             </div>
                             <ul class="pro-body">
-                                <li><a href="javascript:" class="dropdown-item"><i class="feather icon-settings"></i> Settings</a></li>
-                                <li><a href="javascript:" class="dropdown-item"><i class="feather icon-user"></i> Profile</a></li>
-                                <li><a href="message.html" class="dropdown-item"><i class="feather icon-mail"></i> My Messages</a></li>
-                                <li><a href="reset_password.php" class="dropdown-item"><i class="feather icon-lock"></i> Change Password</a></li>
+                                <li><a href="javascript:" class="dropdown-item"><i class="feather icon-settings"></i> Thiết lập</a></li>
+                                <li><a href="javascript:" class="dropdown-item"><i class="feather icon-user"></i> Tài khoản</a></li>
+                                <li><a href="reset_password.php" class="dropdown-item"><i class="feather icon-lock"></i>Đổi mật khẩu</a></li>
                             </ul>
                         </div>
                     </div>

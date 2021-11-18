@@ -1,0 +1,51 @@
+body{
+    margin: 0;
+    padding: 0;
+    font-family: 'Genos', sans-serif;
+}
+
+.header {
+    border: 1px solid #eee;
+}
+.header .navbar-nav{
+    margin-right: 10%;
+}
+.header .nav-item a{
+    font-size: 1.3rem;
+    color: #111;
+}
+.header .navbar-toggler i{
+    font-size: 1.7rem;
+}
+.header .nav-item a:hover{
+    color: rgb(212, 26, 35);
+}
+.header .form-inline .dot{
+    position: relative;
+    height: 37px;
+    width: 37px;
+    border: 1px solid gray;
+    border-radius: 50%;
+    display: inline-block;
+}
+.header .form-inline .dot a{
+    position: absolute;
+    top: 8px;
+    left: 11px;
+    color: #111;
+}
+.header .form-inline .dot a:hover{
+    color: rgb(212, 26, 35)
+}
+.owl-theme .owl-nav{
+    font-size: 40px;
+    position: absolute;
+    right: 20px;
+    top:-80px;
+}
+.owl-theme .owl-nav button{
+    width: 40px;
+}
+.owl-theme .owl-nav button:focus{
+    outline: none;
+}

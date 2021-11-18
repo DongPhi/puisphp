@@ -150,3 +150,11 @@ create table tokens(
     PRIMARY KEY (user_id, token)
 )
 -----------------------------------------------------------------------
+alter TABLE feedback
+add created_at datetime;
+
+alter TABLE feedback
+add updated_at datetime;
+
+alter TABLE feedback
+add status int DEFAULT 0;
