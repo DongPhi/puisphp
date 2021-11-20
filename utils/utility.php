@@ -81,6 +81,7 @@ function moveFile($key, $rootPath = "../../") {
 
 	return $newPath;
 }
+
 function fixUrl($thumbnail, $rootPath = "../../") {
 	if(stripos($thumbnail, 'http://') !== false || stripos($thumbnail, 'https://') !== false) {
 	} else {

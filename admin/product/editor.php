@@ -8,15 +8,15 @@
     $id = getGet('id');
 	if($id != '' && $id > 0) {
 		$sql = "select * from Product where id = '$id' and deleted = 0";
-		$prodcutItem = executeResult($sql, true);
+		$productItem = executeResult($sql, true);
 
-		if($prodcutItem != null) {
-			$category_id = $prodcutItem['category_id'];
-            $title = $prodcutItem['title'];
-            $price = $prodcutItem['price'];
-            $discount = $prodcutItem['discount'];
-            $thumbnail = $prodcutItem['thumbnail'];
-            $description = $prodcutItem['description'];
+		if($productItem != null) {
+			$category_id = $productItem['category_id'];
+            $title = $productItem['title'];
+            $price = $productItem['price'];
+            $discount = $productItem['discount'];
+            $thumbnail = $productItem['thumbnail'];
+            $description = $productItem['description'];
 		} else {
 			$id = 0;
 		}

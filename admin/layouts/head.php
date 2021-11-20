@@ -36,6 +36,6 @@
     <!-- animation css -->
     <link rel="stylesheet" href="<?=$baseUrl?>../assets/plugins/animation/css/animate.min.css">
     <!-- vendor css -->
-    <link rel="stylesheet" href="<?=$baseUrl?>../assets/css/style.css">
+    <link rel="stylesheet" href="<?=$baseUrl?>../assets/css/styles.css">
 </head>
 <body>

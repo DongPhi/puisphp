@@ -10824,9 +10824,14 @@ table.table .avatar {
   height: 100px;
   border: 1px dashed gray;
 }
-.img-product input{
+.img-product input, .img-banner input{
   display:none; 
   visibility: none;
+}
+.img-banner label img{
+  width: 500px;
+  height: auto;
+  border: 1px dashed gray;
 }
 .product-container{
   padding: 0 10%;

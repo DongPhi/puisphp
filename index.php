@@ -7,6 +7,11 @@
     $sql = "select * from Category";
 	$menuItems = executeResult($sql);
 
+    // --- Lấy banner
+    $sql = "select * from Banner";
+	$bannerItem = executeResult($sql);
+
+
     // -- Lấy sản phẩm mới nhất
     $sql = "select Product.*, Category.name as category_name from Product left join Category on Product.category_id = Category.id where Product.deleted = 0 order by Product.updated_at desc limit 0,5";
 	$lastestItems = executeResult($sql);
@@ -23,7 +28,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
     
-    <link rel="stylesheet" href="./assets/css/client/style.css">
+    <link rel="stylesheet" href="./assets/css/client/styles.css">
     <link rel="shortcut icon" href="./assets/images/favico.ico" type="image/x-icon">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -67,8 +72,8 @@
                     </ul>
                     <form class="form-inline my-2 my-lg-0">
                         <span class="dot mr-2 ml-2"><a href=""><i class="fas fa-search"></i></a></span>
-                        <span class="dot mr-2 ml-2"><a href=""><i class="fas fa-heart"></i></a></span>
                         <span class="dot mr-2 ml-2"><a href=""><i class="fas fa-user"></i></a></span>
+                        <span class="dot mr-2 ml-2"><a href=""><i class="fas fa-shopping-basket"></i></a></span>
                     </form>
                 </div>
             </div>
@@ -77,16 +82,30 @@
     <div class="banner">
         <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
             <ol class="carousel-indicators">
-                <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-                <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+                <?php 
+                    $i = 0;
+                    foreach ($bannerItem as $item){
+                        $actives = '';
+                        if($i == 0){
+                            $actives = 'active';
+                        }
+                ?>
+                <li data-target="#carouselExampleIndicators" data-slide-to="<?=$i;?>" class="<?=$actives?>"></li>
+                <?php $i++; } ?>
             </ol>
             <div class="carousel-inner">
-                <div class="carousel-item active">
-                    <img class="d-block w-100" src="./assets/images/slide1.png" alt="First slide">
+                <?php 
+                    $i = 0;
+                    foreach ($bannerItem as $item){
+                        $actives = '';
+                        if($i == 0){
+                            $actives = 'active';
+                        }
+                ?>
+                <div class="carousel-item <?=$actives?>">
+                    <img class="d-block w-100" src="<?= $item['thumbnail'] ?>" alt="First slide">
                 </div>
-                <div class="carousel-item">
-                    <img class="d-block w-100" src="./assets/images/slide2.png" alt="Second slide">
-                </div>
+                <?php $i++; } ?>
             </div>
             <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
                 <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -98,27 +117,31 @@
             </a>
         </div>
     </div>
-    <div class="lastestProduct mt-5">
+    <div class="lastestProduct mt-5 pb-4">
         <div class="container">
-            <div class="text-center mb-5"><h2 class="font-weight-bold"> - Sản phẩm mới nhất -</h2></div>
+            <div class="text-center mb-4"><h2 class="font-weight-bold"> - Sản phẩm mới nhất -</h2></div>
             <div class="owl-carousel owl-theme">
                 <?php 
                     if(!empty($lastestItems)){
                         foreach($lastestItems as $item){
                 ?>
-                    <div>
-                        <div class="text-center">
-                            <img src="<?php echo $item["thumbnail"];?>" alt="" height="214px">
-                            <p><?php echo $item["title"];?></p>
-                            <p>
-                                <i class="fas fa-star text-warning"></i>
-                                <i class="fas fa-star text-warning"></i>
-                                <i class="fas fa-star text-warning"></i>
-                                <i class="fas fa-star text-warning"></i>
-                                <i class="fas fa-star text-warning"></i>
-                            </p>
-                            <p><?php echo number_format($item["price"]);?> đ</p>
+                    <div class="text-center">
+                        <div class="product-item">
+                            <a class="" href="">
+                                <img src="<?php echo $item["thumbnail"];?>" alt=""  height="auto">
+                                <p><?php echo $item["title"];?></p>
+                                <p>
+                                    <i class="fas fa-star text-warning"></i>
+                                    <i class="fas fa-star text-warning"></i>
+                                    <i class="fas fa-star text-warning"></i>
+                                    <i class="fas fa-star text-warning"></i>
+                                    <i class="far fa-star text-warning"></i>
+                                </p>
+                                <p><?php echo number_format($item["price"]);?> đ</p>
+                            </a>
+                            <button type="button" class="btn btn-success">Thêm vào giỏ hàng</button>
                         </div>
+                        
                     </div>
                 <?php
                     }
@@ -127,7 +150,52 @@
             </div>
         </div> 
     </div>
-    
+    <div>
+        <div class="container">
+            <div class="text-center mt-5"><h2 class="font-weight-bold"> - Danh mục hàng hóa -</h2></div>
+        </div>
+    </div>
+    <div class="menu-footer mt-5">
+        <div class="container mt-3 mb-2">
+            <div class="row">
+                <div class="col-sm-3">
+                    <h4>Hỗ trợ khách hàng</h4>
+                        <a href=""><p>Chính Sách Đổi Trả</p></a>  
+                        <a href=""><p>Chính Sách Bảo Mật</p></a> 
+                        <a href=""><p>Chính Sách Bảo Hành</p></a>
+                        <a href=""><p>Chính Sách Giao Hàng</p></a>
+                        <a href=""><p>Phương Thức Thanh Toán</p></a>
+                </div>
+                <div class="col-sm-3">
+                    <h4>Pui's Mobile</h4>
+                    <a href=""><p>Về Pui's</p></a>
+                    <a href=""><p>Tuyển dụng</p></a>
+                    <a href=""><p>Khuyến mãi</p></a>
+                    <a href=""><p>Hỏi đáp</p></a>
+                    <a href=""><p>Tra cứu bảo hành</p></a>
+                </div>
+                <div class="col-sm-3">
+                    <h4>Tổng đài hỗ trợ</h4>
+                    <p>Tư vấn mua hàng </br> <b>0968.123.367</b></p>
+                    <p>Hỗ trợ kỹ thuật </br> <b>0582.565.855</b></p>
+                    <p>Khiếu nại - gói ý </br> <b>0582.565.855</b></p>
+                </div>
+                <div class="col-sm-3">
+                    <h4>Liên hệ</h4>
+                    <p><i class="fas fa-map-marker-alt mr-1"></i> 104 Bình An 7, Hải Châu, Đà Nẵng</p>
+                    <p><i class="fas fa-phone-alt mr-1"></i> 0582.565.855</p>
+                    <p><i class="fas fa-envelope mr-1"></i> dongphivnn@gmail.com</p>
+                    <h4>Mạng xã hội</h4>
+                    <a class="icon-social mr-3" href=""><span><i class="fab fa-facebook-square"></i></span></a>
+                    <a class="icon-social mr-3" href=""><span><i class="fab fa-instagram"></i></span></a>
+                    <a class="icon-social mr-3" href=""><span><i class="fab fa-youtube"></i></span></a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="footer">
+        <p>Bản quyền của Pui's Mobile ® 2021. Bảo lưu mọi quyền. </br> Ghi rõ nguồn "www.puis.com.vn" ® khi sử dụng lại thông tin từ website này.</p>
+    </div>
 	<script>
         $(document).ready(function(){
     	    $('.owl-carousel').owlCarousel({

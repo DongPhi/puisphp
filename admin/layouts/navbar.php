@@ -41,6 +41,7 @@
                     <li class="nav-item pcoded-menu-caption">
                         <label>Hệ thống</label>
                     </li>
+                    <li data-username="Charts Morris" class="nav-item"><a href="<?=$baseUrl?>banner" class="nav-link "><span class="pcoded-micon"><i class="feather icon-image"></i></span><span class="pcoded-mtext">Banner</span></a></li>
                     <li data-username="Charts Morris" class="nav-item"><a href="<?=$baseUrl?>authen/logout.php" class="nav-link "><span class="pcoded-micon"><i class="feather icon-log-out"></i></span><span class="pcoded-mtext">Đăng xuất</span></a></li>
                 </ul>
             </div>
