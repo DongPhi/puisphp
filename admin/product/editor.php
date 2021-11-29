@@ -3,7 +3,7 @@
     $baseUrl = '../';
     include('../layouts/head.php');
     require_once('form_save.php');
-    $id = $category_id = $title = $price = $discount = $thumbnail = $description = '';
+    $id = $category_id = $title = $price = $discount = $thumbnail = $product_banner = $description = $specifications = '';
 	
     $id = getGet('id');
 	if($id != '' && $id > 0) {
@@ -16,7 +16,9 @@
             $price = $productItem['price'];
             $discount = $productItem['discount'];
             $thumbnail = $productItem['thumbnail'];
+            $product_banner = $productItem['product_banner'];
             $description = $productItem['description'];
+            $specifications = $productItem['specifications'];
 		} else {
 			$id = 0;
 		}
@@ -85,15 +87,32 @@
                                     </div>
                                    
                                     <div class="form-group">
-                                        <label>Hình ảnh</label>
-                                        <div class="img-product">
-                                            <label for="thumbnail"><img src="<?=fixUrl($thumbnail)?>" onerror="this.src='../../assets/images/add-image.png'" id="thumbnail_img" class="img-display"/></label>
-                                            <input type="file" accept=".jpg, .png, .jpeg, .gif, .bmp, .tif, .tiff|image/*" id="thumbnail" name="thumbnail" onchange="updateThumbnail(this);">
+                                        <div class="row">
+                                            <div class="col-sm-6">
+                                                <label>Hình ảnh</label>
+                                                <div class="img-product">
+                                                    <label for="thumbnail"><img src="<?=fixUrl($thumbnail)?>" onerror="this.src='../../assets/images/add-image.png'" id="thumbnail_img" class="img-display"/></label>
+                                                    <input type="file" accept=".jpg, .png, .jpeg, .gif, .bmp, .tif, .tiff|image/*" id="thumbnail" name="thumbnail" onchange="updateThumbnail(this);">
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <label>Banner sản phẩm</label>
+                                                <div class="img-product">
+                                                    <label for="product_banner"><img src="<?=fixUrl($product_banner)?>" onerror="this.src='../../assets/images/add-image.png'" id="product_banner_img" class="img-display"/></label>
+                                                    <input type="file" accept=".jpg, .png, .jpeg, .gif, .bmp, .tif, .tiff|image/*" id="product_banner" name="product_banner" onchange="updateProductBanner(this);">
+                                                </div>
+                                            </div>
                                         </div>
+                                        
+                                        
                                     </div>
                                     <div class="form-group">
                                         <label>Mô tả</label>
                                         <textarea class="form-control" rows="5" name="description" id="description"><?=$description?></textarea>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Thông số sản phẩm</label>
+                                        <textarea class="form-control" rows="5" name="specifications" id="specifications"><?=$specifications?></textarea>
                                     </div>
                                 </div>
                                 <div class="modal-footer">
@@ -120,6 +139,17 @@
             reader.readAsDataURL(input.files[0]);
         }
     }
+    function updateProductBanner(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+
+            reader.onload = function (e) {
+                $('#product_banner_img')
+                    .attr('src', e.target.result)
+            };
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
 </script>
 <script type="text/javascript">
     $('#description').summernote({
@@ -135,7 +165,23 @@
           ['insert', ['link', 'picture', 'video']],
           ['view', ['fullscreen', 'codeview', 'help']]
         ]
-      });
+    });
+</script>
+<script type="text/javascript">
+    $('#specifications').summernote({
+        placeholder: 'Nhập thông số sản phẩm',
+        tabsize: 2,
+        height: 120,
+        toolbar: [
+          ['style', ['style']],
+          ['font', ['bold', 'underline', 'clear']],
+          ['color', ['color']],
+          ['para', ['ul', 'ol', 'paragraph']],
+          ['table', ['table']],
+          ['insert', ['link', 'picture', 'video']],
+          ['view', ['fullscreen', 'codeview', 'help']]
+        ]
+    });
 </script>
 <?php 
     include('../layouts/scripts.php');

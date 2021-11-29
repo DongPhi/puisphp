@@ -6,7 +6,20 @@
     include('../layouts/navbar.php');
     include('../layouts/header.php');
 
-    $sql = "select * from Category";
+    $sql = "select count(id) as number from Category";
+    $data = executeResult($sql);
+    $number = 0;
+    if($data != null && count($data) > 0){
+        $number = $data[0] ['number'];
+    }
+    $pages = ceil($number/5);
+    $current_page = 1;
+    if(isset($_GET['page'])){
+        $current_page = $_GET['page'];
+    }
+    $index = ($current_page - 1)*5;
+
+    $sql = "select * from Category limit $index,5";
 	$data = executeResult($sql);
 ?>
 <div class="pcoded-main-container">
@@ -66,9 +79,36 @@
                             </table>
                             <div class="clearfix">
                                 <ul class="pagination">
-                                    <li class="page-item disabled"><a href="#">Trước</a></li>
-                                    <li class="page-item active"><a href="#" class="page-link">1</a></li>
-                                    <li class="page-item"><a href="#" class="page-link">Sau</a></li>
+                                    <li class="page-item">
+                                        <?php 
+                                            if ($current_page > 1 && $pages > 1){
+                                                echo'
+                                                    <a href="index.php?page='.($current_page-1).'">Trước</a>
+                                                '; 
+                                            }
+                                        ?>
+                                    </li>
+                                    <li class="page-item">
+                                        <?php
+                                            for ($i = 1; $i <= $pages; $i++){
+                                                if ($i == $current_page){
+                                                    echo'<span>'.$i.'</span>';
+                                                }
+                                                else{
+                                                    echo'<a href="index.php?page='.$i.'">'.$i.'</a>';
+                                                }
+                                            }
+                                        ?>
+                                    </li>
+                                    <li class="page-item">
+                                        <?php 
+                                            if ($current_page < $pages && $pages > 1){
+                                                echo'
+                                                    <a href="index.php?page='.($current_page+1).'">Sau</a>
+                                                '; 
+                                            }
+                                        ?>
+                                    </li>
                                 </ul>
                             </div>
                         </div>

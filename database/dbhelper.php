@@ -30,7 +30,6 @@ function executeResult($sql, $isSingle = false){
         }
     }
     
-
     //close connection
     mysqli_close($conn);
 

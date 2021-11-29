@@ -10849,3 +10849,8 @@ table.table .avatar {
   margin: 0 1px;
   padding-left: 10px;
 }
+.clearfix .pagination .page-item span{
+  color: #fff;
+  font-size: 12px;
+  background-color: #17a3d1;
+}
